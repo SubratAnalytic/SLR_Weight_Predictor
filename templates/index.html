@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Height to Weight Predictor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f8;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #12366b;
+            font-size: 30px;
+        }
+
+        p {
+            color: #555;
+            font-size: 17px;
+        }
+
+        input {
+            width: 90%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #c5ccda;
+            border-radius: 8px;
+            font-size: 17px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: #0879e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #075fba;
+        }
+
+        .result {
+            margin-top: 22px;
+            padding: 18px;
+            background: #e5f8e8;
+            border: 1px solid #a6dfb0;
+            border-radius: 10px;
+            color: #17652a;
+        }
+
+        .result h2 {
+            font-size: 30px;
+            margin: 8px 0;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffe8e8;
+            color: red;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="icon">⚖️</div>
+
+    <h1>Height to Weight Predictor</h1>
+
+    <p>Enter your height to predict your weight</p>
+
+    <form method="POST" action="/">
+        <input
+            type="number"
+            name="height_cm"
+            placeholder="Enter height in cm"
+            step="any"
+            required
+        >
+
+        <button type="submit">Predict Weight</button>
+    </form>
+
+    {% if prediction is not none %}
+    <div class="result">
+        <p>Predicted Weight</p>
+        <h2>{{ prediction }} kg</h2>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
